@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Codes and Ciphers</title>
+        <style>
+            body {
+                background: #000000;
+                color: #ffffff;
+                font-family: "Courier New", Courier, monospace;
+            }
+            a:link {
+                color: #ffffff;
+            }
+            a:visited {
+                color: #ffffff;
+            }
+            a:hover {
+                color: #ffffff;
+            }
+            a:active {
+                color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <div><h2>Well done!</h2>(<a href="../../">Start over</a>)</div>
+        <p>Congratulations! However, Caesar ciphers are not particularly secure. You just experienced that yourself. This is because, as explained before, they only have 25 possible keys.</p>
+        <h3>The Vigen&egrave;re cipher</h3>
+        <p>While not being used in World War II, the Vigen&egrave;re cipher is an excellent example of a cipher more difficult to crack. This cipher requires text, not a number, for a key. It is essentially multiple Caesar ciphers, but with the key changing for each letter of the message. The cipher was created by Giovan Battista Bellaso, but it gets its name from Blaise de Vigen&egrave;re, another cryptographer, due to the cipher being popularly misattributed to him.</p>
+        <h3>Try it yourself!</h3>
+        <p>The Vigen&egrave;re cipher has an incredibly large number of potential keys, as the key can be any string consisting of solely letters as long as it is no longer than the text it is encoding. You have intercepted the message "B ufvu qdssmjvjdv jvmjv", which has been encoded using a Vigen&egrave;re cipher, though you do not know the key. Try a few possible keys, then click below once you're ready to learn about the Enigma code.</p>
+        <input type="text" id="key">
+        <button onclick="decode()">Decode</button>
+        <h2 id="decoded">Decoded result:</h2>
+        <h2><a href="../enigma/">Proceed!</a></h2>
+        <script>
+            var decode = function() {
+                var k = document.getElementById('key').value;
+                var s = "Decoded result: ";
+                var e = "b ufvu qdssmjvjdv jvmjv";
+                var c = 0;
+                for (var i = 0; i < e.length; i++) {
+                    if (e[i] == " ") {
+                        s += " ";
+                        continue;
+                    }
+                    var j = k.charCodeAt(c%k.length)-97; //todo
+                    s += String.fromCharCode((((e.charCodeAt(i)-19)-j)%26)+97);
+                    c++;
+                }
+                document.getElementById("decoded").innerHTML = s;
+            }
+        </script>
+    </body>
+</html>
