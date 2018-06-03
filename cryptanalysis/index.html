@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Codes and Ciphers</title>
+        <style>
+            body {
+                background: #000000;
+                color: #ffffff;
+                font-family: "Courier New", Courier, monospace;
+            }
+            a:link {
+                color: #ffffff;
+            }
+            a:visited {
+                color: #ffffff;
+            }
+            a:hover {
+                color: #ffffff;
+            }
+            a:active {
+                color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <div><h2>Simple Ciphers</h2>(<a href="../">Start over</a>)</div>
+        <p>The most well-known type of cipher is the Caesar cipher, named because Julius Caesar used it to send secret messages. This cipher requires a key to decode. It works by shifting each letter forward in the alphabet by the amount determined by the key.</p>
+        <h3>An example of the Caesar cipher</h3>
+        <p>Let's say you wanted to encrypt the text "GREETINGS AND SALUTATIONS" with the key being 3. Each letter would be moved forward three places to obtain the encoded text. G, the seventh letter in the alphabet, would become J, the tenth letter. If you had to encrypt a letter like X, where shifting forward three places would result in a letter after Z, it would loop back around to A.</p>
+        <h3>A Caesar cipher without a key</h3>
+        <p>Of course, to someone besides the intended recipient trying to break a Caesar cipher, they would need to have the message, but they might not have the key. This is where cryptanalysis comes in. This is easy with a Caesar cipher because there are only 25 possible keys, as key 26 iss the same as changing nothing, and any key after is the same as a previous one.</p>
+        <h3>Try it yourself!</h3>
+        <p>You have intercepted the message "kqtbjwx", and know it has been encrypted using a Caesar cipher. To go to the next part of the activity, type the decoded message at the end of the the URL bar such that it says<br>"enigma-machine.github.io/codes/cryptanalysis/DECODED_MESSAGE_HERE". Here's a handy tool to help you try to decrypt to message. Guess a key and it will output the result. When it is an actual word, that likely means you've decoded it correctly!</p>
+        <input type="number" id="key" value="0">
+        <button onclick="decode()">Decode</button>
+        <h2 id="decoded">Decoded result:</h2>
+        <script>
+            var decode = function() {
+                var k = document.getElementById('key').value % 26;
+                var s = "Decoded result: ";
+                var e = "kqtbjwx";
+                for (var i = 0; i < e.length; i++) {
+                    s += String.fromCharCode((((e.charCodeAt(i)-19)-k)%26)+97);
+                }
+                document.getElementById("decoded").innerHTML = s;
+            }
+        </script>
+    </body>
+</html>
